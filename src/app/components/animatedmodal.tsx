@@ -223,7 +223,7 @@ return (
 // Add it in a separate file, I've added here for simplicity
 export const useOutsideClick = (
 ref: React.RefObject<HTMLDivElement | null>,
-callback: Function
+callback: (...args: any[]) => any
 ) => {
 useEffect(() => {
     const listener = (event: any) => {

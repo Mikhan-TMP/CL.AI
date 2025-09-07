@@ -1,17 +1,15 @@
 "use client";
 
-import { PlaceholdersAndVanishInput } from "../components/mainform";
-import { LampContainer } from "../components/lamp";
-import { BackgroundRippleEffect } from "../components/background.ripple";
 import { useState } from "react";
 import { Navbar, NavBody, NavItems, NavbarButton, NavbarLogo, MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle } from "../components/navbar";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalProvider, ModalTrigger } from "../components/animatedmodal";
-import { IconBulbFilled, IconCopy, IconDownload, IconEdit, IconInputAi, IconLetterR, IconLink, IconListLetters, IconRefresh, IconSend, IconUpload } from "@tabler/icons-react";
 import { FloatingDock } from "../components/dock";
 import { MultiStepLoader as Loader } from "../components/steploader";
 import { AnimatePresence, motion } from "framer-motion";
 import jsPDF from "jspdf";
 import  MultiStepDetailForm  from "../components/multistep-form";
+import { IconBulbFilled, IconCopy, IconDownload, IconEdit, IconInputAi, IconLink, IconListLetters, IconRefresh, IconUpload } from "@tabler/icons-react";
+import { PlaceholdersAndVanishInput } from "../components/mainform";
+import { BackgroundRippleEffect } from "../components/background.ripple";
 
 const navItems = [
     {
@@ -130,8 +128,7 @@ export default function Main() {
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    }
+    const handleChange = () => {} // If not used
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -155,7 +152,7 @@ export default function Main() {
         }
     }
 
-    const handleDetailFormSubmit = async (formData: Record<string, any>) => {
+    const handleDetailFormSubmit = async (formData: Record<string, string>) => {
         const prompt = `
         Generate a cover letter for the position of ${formData["Job Title Applying For"]} at ${formData["Company Name"]}.
         Applicant: ${formData["Full Name"]}, Email: ${formData["Email Address"]}, Phone: ${formData["Phone Number"]}, Location: ${formData["Location"]}.

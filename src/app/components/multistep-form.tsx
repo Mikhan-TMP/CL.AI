@@ -18,11 +18,19 @@ type DetailStep = {
 };
 
 // Use the type for the steps prop
-export default function MultiStepDetailForm({ steps, onClose, onSubmitForm }: { steps: DetailStep[], onClose: () => void, onSubmitForm: (data: Record<string, any>) => void }) {
+export default function MultiStepDetailForm({
+    steps,
+    onClose,
+    onSubmitForm,
+}: {
+    steps: DetailStep[],
+    onClose: () => void,
+    onSubmitForm: (data: Record<string, string>) => void
+}) {
     const [currentStep, setCurrentStep] = useState(0);
-    const [formData, setFormData] = useState(() => {
+    const [formData, setFormData] = useState<Record<string, string>>(() => {
         // Initialize form data structure
-        const data: Record<string, any> = {};
+        const data: Record<string, string> = {};
         steps.forEach((step, sIdx) => {
             step.fields.forEach((field, fIdx) => {
                 // Use label as key for simplicity
@@ -42,7 +50,7 @@ export default function MultiStepDetailForm({ steps, onClose, onSubmitForm }: { 
         return formData[key] && formData[key].toString().trim() !== "";
     });
 
-    const handleFieldChange = (idx: number, value: any) => {
+    const handleFieldChange = (idx: number, value: string) => {
         const key = `${currentStep}-${idx}`;
         setFormData(prev => ({ ...prev, [key]: value }));
         setTouched(prev => ({ ...prev, [key]: true }));
@@ -58,10 +66,10 @@ export default function MultiStepDetailForm({ steps, onClose, onSubmitForm }: { 
         if (currentStep > 0) setCurrentStep(currentStep - 1);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isStepValid) {
-            const output: Record<string, any> = {};
+            const output: Record<string, string> = {};
             steps.forEach((step, sIdx) => {
                 step.fields.forEach((field, fIdx) => {
                     output[field.label] = formData[`${sIdx}-${fIdx}`];
