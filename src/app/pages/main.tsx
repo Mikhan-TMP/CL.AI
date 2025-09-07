@@ -106,7 +106,7 @@ export default function Main() {
         company?: string;
         location?: string;
         description?: string;
-        [key: string]: any;
+        [key: string]: string | undefined;
     };
 
     const [urlInput, setUrlInput] = useState("");
@@ -170,7 +170,7 @@ export default function Main() {
             });
             const data = await res.json();
             setResponseData(data.result || "No output received");
-        } catch (err) {
+        } catch {
             setResponseData("Error generating letter.");
         } finally {
             setShowLoader(false);
