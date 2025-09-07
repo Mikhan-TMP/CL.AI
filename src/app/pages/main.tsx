@@ -109,9 +109,9 @@ export default function Main() {
         [key: string]: any;
     };
 
-    const [urlInput, setUrlInput] = useState(""); // Add this
-    const [urlResult, setUrlResult] = useState<string | UrlScrapeResult | null>(null); // Add this
-    const [urlLoading, setUrlLoading] = useState(false); // Add this
+    const [urlInput, setUrlInput] = useState("");
+    const [urlResult, setUrlResult] = useState<string | UrlScrapeResult | null>(null);
+    const [urlLoading, setUrlLoading] = useState(false);
 
     const handleDockClick = (title: string) => {
         if (title === "Generated Letter") {
@@ -152,7 +152,7 @@ export default function Main() {
         }
     }
 
-    const handleDetailFormSubmit = async (formData: Record<string, string>) => {
+    const handleDetailFormSubmit = async (formData: Record<string, string | number>) => {
         const prompt = `
         Generate a cover letter for the position of ${formData["Job Title Applying For"]} at ${formData["Company Name"]}.
         Applicant: ${formData["Full Name"]}, Email: ${formData["Email Address"]}, Phone: ${formData["Phone Number"]}, Location: ${formData["Location"]}.
